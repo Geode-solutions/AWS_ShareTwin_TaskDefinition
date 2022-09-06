@@ -31,7 +31,7 @@ on:
     branches: [ master, develop ] 
 
 env:
-  AWS_REGION: 'eu-west-3'                   # set this to your preferred AWS region, e.g. us-west-1
+  AWS_REGION: 'us-east-1'                   # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: 'visualization_repository'     # set this to your Amazon ECR repository name
   # ECS_SERVICE: MY_ECS_SERVICE                 # set this to your Amazon ECS service name
   ECS_CLUSTER: 'VisualizationCluster'         # set this to your Amazon ECS cluster name
@@ -73,8 +73,9 @@ jobs:
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker build -t $ECR_REPOSITORY .
+        docker tag $ECR_REPOSITORY:latest public.ecr.aws/m4f6w3w9/$ECR_REPOSITORY:latest
+        docker push public.ecr.aws/m4f6w3w9/$ECR_REGISTRY:latest
         echo "::set-output name=image::$ECR_REPOSITORY/$ECR_REPOSITORY:$IMAGE_TAG"
 
     - name: Fill in the new image ID in the Amazon ECS task definition
