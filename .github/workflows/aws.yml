@@ -36,8 +36,8 @@ jobs:
       id: render-web-container
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: "VisualizationTaskDefinition.json"
-        container-name: 'visualization_container'
+        task-definition: VisualizationTaskDefinition.json
+        container-name: VisualizationContainer
         image: amazon/amazon-ecs-sample:latest
         environment-variables: "LOG_LEVEL=info"
 
