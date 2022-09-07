@@ -8,6 +8,12 @@
           "containerPort": 443
         }
       ],
+      "mountPoints": [
+        {
+          "containerPath": "/data",
+          "sourceVolume": "data"
+        }
+      ],
       "image": "ghcr.io/geode-solutions/visualization_backend:develop",
       "name": "VisualizationContainer"
     },
@@ -28,6 +34,12 @@
         {
           "name": "ID",
           "value": "123456"
+        }
+      ],
+      "mountPoints": [
+        {
+          "containerPath": "/data",
+          "sourceVolume": "data"
         }
       ],
       "image": "ghcr.io/geode-solutions/visualization_geodebackend:develop",
