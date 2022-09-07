@@ -48,7 +48,7 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     environment: production
-
+    
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -75,4 +75,3 @@ jobs:
         task-definition: ${{ steps.render-web-container.outputs.task-definition }}
         service: $ECS_SERVICE
         cluster: $ECS_CLUSTER
-
