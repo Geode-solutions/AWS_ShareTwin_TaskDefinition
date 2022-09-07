@@ -47,7 +47,7 @@
     }
   ],
   "memory": "8192",
-  "family": "VisualizationTaskDefinition",
+  "family": "Dev_VisualizationTaskDefinition",
   "cpu": "4096",
   "volumes": [
     {
