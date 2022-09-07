@@ -1,5 +1,0 @@
-cryptography
-python-dotenv
-Flask[async]
-Flask-Cors
-Werkzeug
