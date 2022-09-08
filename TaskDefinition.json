@@ -8,6 +8,10 @@
           "containerPort": 443
         }
       ],
+      "image": "traefik",
+      "name": "Traefik"
+    },
+    {
       "mountPoints": [
         {
           "containerPath": "/data",
@@ -18,13 +22,6 @@
       "name": "VisualizationContainer"
     },
     {
-      "portMappings": [
-        {
-          "hostPort": 5000,
-          "protocol": "tcp",
-          "containerPort": 5000
-        }
-      ],
       "cpu": 0,
       "environment": [
         {
