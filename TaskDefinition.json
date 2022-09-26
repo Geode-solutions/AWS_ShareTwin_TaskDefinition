@@ -25,7 +25,7 @@
           "awslogs-stream-prefix": "ecs"
         },
         "secretOptions": []
-      },
+      }
     },
     {
       "mountPoints": [
@@ -90,6 +90,9 @@
   "volumes": [
     {
       "name": "data"
+    },
+    {
+      "name": "traefikroot"
     }
   ]
 }
