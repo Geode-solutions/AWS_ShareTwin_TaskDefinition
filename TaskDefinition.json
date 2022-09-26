@@ -67,6 +67,7 @@
   ],
   "memory": "8192",
   "family": "Dev_VisualizationTaskDefinition",
+  "networkMode": "awsvpc",
   "cpu": "4096",
   "requiresCompatibilities": [
     "FARGATE"
