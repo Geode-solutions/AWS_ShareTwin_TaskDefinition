@@ -17,8 +17,8 @@
       "name": "Traefik",
       "command": [
         "--log.level=DEBUG",
-        "--providers.docker=true",
-        "--providers.docker.exposedbydefault=false",
+        "--providers.ecs=true",
+        "--providers.ecs.exposedbydefault=false",
         "--entrypoints.web.address=:80",
         "--entrypoints.websecure.address=:443"
       ],
@@ -37,10 +37,6 @@
         {
           "containerPath": "/data",
           "sourceVolume": "data"
-        },
-        {
-          "sourceVolume": "traefikroot",
-          "containerPath": "/etc/traefik"
         }
       ],
       "image": "ghcr.io/geode-solutions/visualization_backend:develop",
@@ -95,9 +91,6 @@
   "volumes": [
     {
       "name": "data"
-    },
-    {
-      "name": "traefikroot"
     }
   ]
 }
