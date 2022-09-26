@@ -19,7 +19,7 @@
         "--log.level=DEBUG",
         "--providers.ecs=true",
         "--providers.ecs.exposedbydefault=false",
-        "--providers.ecs.autoDiscoverClusters=false",
+        "--providers.ecs.autoDiscoverClusters=true",
         "--entrypoints.web.address=:80",
         "--entrypoints.websecure.address=:443"
       ],
