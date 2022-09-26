@@ -6,11 +6,6 @@
           "hostPort": 443,
           "protocol": "tcp",
           "containerPort": 443
-        },
-        {
-          "hostPort": 80,
-          "protocol": "tcp",
-          "containerPort": 80
         }
       ],
       "image": "traefik",
@@ -21,8 +16,7 @@
         "--providers.ecs.exposedbydefault=false",
         "--providers.ecs.autoDiscoverClusters=false",
         "--providers.ecs.clusters=Dev_VisualizationCluster",
-        "--entrypoints.web.address=:80",
-        "--entrypoints.websecure.address=:443"
+        "--entrypoints.web.address=:443"
       ],
       "logConfiguration": {
         "logDriver": "awslogs",
