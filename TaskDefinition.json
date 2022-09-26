@@ -19,6 +19,10 @@
         "--log.level=DEBUG",
         "--providers.ecs=true",
         "--providers.ecs.exposedbydefault=false",
+        "--providers.ecs.autoDiscoverClusters=false,",
+        "--providers.ecs.region=eu-west-3",
+        "--providers.ecs.accessKeyID=${{ secrets.AWS_ACCESS_KEY_ID }}",
+        "--providers.ecs.secretAccessKey=${{ secrets.AWS_SECRET_ACCESS_KEY }}",
         "--entrypoints.web.address=:80",
         "--entrypoints.websecure.address=:443"
       ],
