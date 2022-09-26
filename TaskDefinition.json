@@ -68,10 +68,6 @@
   "memory": "8192",
   "family": "Dev_VisualizationTaskDefinition",
   "cpu": "4096",
-  "compatibilities": [
-    "EC2",
-    "FARGATE"
-  ],
   "requiresCompatibilities": [
     "FARGATE"
   ],
