@@ -28,9 +28,9 @@
       "name": "VisualizationContainer",
       "dockerLabels": {
         "traefik.enable": "true",
-        "traefik.http.routers.viewer-router.rule": "PathPrefix(`/viewer`)",
+        "traefik.http.routers.viewer-router.rule": "PathPrefix(`/123456/viewer`)",
         "traefik.http.routers.viewer-router.entrypoints": "web",
-        "traefik.http.middlewares.viewer-strip.stripprefix.prefixes": "/viewer",
+        "traefik.http.middlewares.viewer-strip.stripprefix.prefixes": "/123456/viewer",
         "traefik.http.middlewares.viewer-strip.stripprefix.forceSlash": "false",
         "traefik.http.routers.viewer-router.middlewares": "viewer-strip"
       }
@@ -57,9 +57,9 @@
       "name": "GeodeBackEnd",
       "dockerLabels": {
         "traefik.enable": "true",
-        "traefik.http.routers.geode-router.rule": "PathPrefix(`/geode`)",
+        "traefik.http.routers.geode-router.rule": "PathPrefix(`/123456/geode`)",
         "traefik.http.routers.geode-router.entrypoints": "web",
-        "traefik.http.middlewares.geode-strip.stripprefix.prefixes": "/geode",
+        "traefik.http.middlewares.geode-strip.stripprefix.prefixes": "/123456/geode",
         "traefik.http.middlewares.geode-strip.stripprefix.forceSlash": "false",
         "traefik.http.routers.geode-router.middlewares": "geode-strip"
       }
