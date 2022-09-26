@@ -15,7 +15,17 @@
         "--providers.docker=true",
         "--providers.docker.exposedbydefault=false",
         "--entrypoints.web.address=:443"
-      ]
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/Dev_VisualizationTaskDefinition",
+          "awslogs-region": "eu-west-3",
+          "awslogs-stream-prefix": "ecs"
+        },
+        "secretOptions": []
+      },
     },
     {
       "mountPoints": [
