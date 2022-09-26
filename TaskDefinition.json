@@ -32,6 +32,10 @@
         {
           "containerPath": "/data",
           "sourceVolume": "data"
+        },
+        {
+          "sourceVolume": "traefikroot",
+          "containerPath": "/etc/traefik"
         }
       ],
       "image": "ghcr.io/geode-solutions/visualization_backend:develop",
