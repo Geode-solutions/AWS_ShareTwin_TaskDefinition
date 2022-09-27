@@ -128,12 +128,6 @@
   "volumes": [
     {
       "name": "data"
-    },
-    {
-      "name": "toto",
-      "host": {
-        "SourcePath": "/var/run/docker.sock:/var/run/docker.sock:ro"
-      }
     }
   ]
 }
