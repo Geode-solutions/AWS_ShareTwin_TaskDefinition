@@ -32,7 +32,10 @@
           "awslogs-region": "eu-west-3",
           "awslogs-stream-prefix": "ecs"
         }
-      }
+      },
+      "volumesFrom": [
+        "/var/run/docker.sock:/var/run/docker.sock:ro"
+      ]
     },
     {
       "mountPoints": [
