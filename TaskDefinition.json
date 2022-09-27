@@ -3,9 +3,9 @@
     {
       "portMappings": [
         {
-          "hostPort": 443,
+          "hostPort": 80,
           "protocol": "tcp",
-          "containerPort": 443
+          "containerPort": 80
         },
         {
           "hostPort": 8080,
@@ -23,7 +23,7 @@
         "--providers.ecs.exposedbydefault=false",
         "--providers.ecs.autoDiscoverClusters=false",
         "--providers.ecs.clusters=Dev_VisualizationCluster",
-        "--entrypoints.web.address=:443"
+        "--entrypoints.web.address=:80"
       ],
       "logConfiguration": {
         "logDriver": "awslogs",
