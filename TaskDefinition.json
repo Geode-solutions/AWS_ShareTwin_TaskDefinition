@@ -29,7 +29,7 @@
         "logDriver": "awslogs",
         "options": {
           "awslogs-create-group": "true",
-          "awslogs-group": "/ecs/Dev_VisualizationTaskDefinition",
+          "awslogs-group": "/ecs/Dev_VisualizationTaskDefinition/traefik",
           "awslogs-region": "eu-west-3",
           "awslogs-stream-prefix": "ecs"
         }
@@ -58,6 +58,15 @@
         "traefik.http.middlewares.viewer-strip.stripprefix.prefixes": "/viewer",
         "traefik.http.middlewares.viewer-strip.stripprefix.forceSlash": "false",
         "traefik.http.routers.viewer-router.middlewares": "viewer-strip"
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/Dev_VisualizationTaskDefinition/viewer",
+          "awslogs-region": "eu-west-3",
+          "awslogs-stream-prefix": "ecs"
+        }
       }
     },
     {
@@ -94,6 +103,15 @@
         "traefik.http.middlewares.geode-strip.stripprefix.prefixes": "/geode",
         "traefik.http.middlewares.geode-strip.stripprefix.forceSlash": "false",
         "traefik.http.routers.geode-router.middlewares": "geode-strip"
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/Dev_VisualizationTaskDefinition/geode",
+          "awslogs-region": "eu-west-3",
+          "awslogs-stream-prefix": "ecs"
+        }
       }
     }
   ],
