@@ -23,7 +23,8 @@
         "--providers.ecs.exposedbydefault=false",
         "--providers.ecs.autoDiscoverClusters=false",
         "--providers.ecs.clusters=Dev_VisualizationCluster",
-        "--entrypoints.web.address=:80"
+        "--entrypoints.web.address=:80",
+        "--serversTransport.insecureSkipVerify=true"
       ],
       "logConfiguration": {
         "logDriver": "awslogs",
