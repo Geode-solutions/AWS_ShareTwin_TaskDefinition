@@ -19,10 +19,9 @@
         "--api.dashboard=true",
         "--api.insecure=true",
         "--log.level=DEBUG",
-        "--providers.ecs=true",
-        "--providers.ecs.exposedbydefault=false",
-        "--providers.ecs.autoDiscoverClusters=false",
-        "--providers.ecs.clusters=Dev_VisualizationCluster",
+        "--providers.docker=true",
+        "--providers.docker.exposedbydefault=false",
+        "--providers.docker.network=traefik",
         "--entrypoints.websecure.address=:443",
         "--serversTransport.insecureSkipVerify=true"
       ],
