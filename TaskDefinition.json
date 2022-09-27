@@ -34,7 +34,9 @@
         }
       },
       "volumesFrom": [
-        "/var/run/docker.sock:/var/run/docker.sock:ro"
+        {
+          "sourceContainer": "/var/run/docker.sock:/var/run/docker.sock:ro"
+        }
       ]
     },
     {
