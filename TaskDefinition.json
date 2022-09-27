@@ -32,12 +32,7 @@
           "awslogs-region": "eu-west-3",
           "awslogs-stream-prefix": "ecs"
         }
-      },
-      "volumesFrom": [
-        {
-          "sourceContainer": "/var/run/docker.sock"
-        }
-      ]
+      }
     },
     {
       "mountPoints": [
@@ -133,6 +128,12 @@
   "volumes": [
     {
       "name": "data"
+    },
+    {
+      "name": "toto",
+      "host": {
+        "SourcePath": "/var/run/docker.sock:/var/run/docker.sock:ro"
+      }
     }
   ]
 }
