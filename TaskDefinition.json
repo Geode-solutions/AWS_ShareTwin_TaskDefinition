@@ -54,7 +54,7 @@
         "traefik.http.middlewares.viewer-strip.stripprefix.prefixes": "/viewer",
         "traefik.http.middlewares.viewer-strip.stripprefix.forceSlash": "false",
         "traefik.http.routers.viewer-router.middlewares": "viewer-strip",
-        "traefik.http.services.viewer.loadbalancer.server.port": "5000"
+        "traefik.http.services.viewer.loadbalancer.server.port": "1234"
       },
       "logConfiguration": {
         "logDriver": "awslogs",
