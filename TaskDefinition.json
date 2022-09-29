@@ -65,6 +65,45 @@
           "awslogs-stream-prefix": "ecs"
         }
       }
+    },
+    {
+      "environment": [
+        {
+          "name": "FLASK_ENV",
+          "value": "development"
+        },
+        {
+          "name": "ID",
+          "value": "123456"
+        }
+      ],
+      "mountPoints": [
+        {
+          "containerPath": "/data",
+          "sourceVolume": "data"
+        }
+      ],
+      "image": "ghcr.io/geode-solutions/visualization_geodebackend:develop",
+      "name": "GeodeBackEnd",
+      "dockerLabels": {
+        "traefik.enable": "true",
+        "traefik.http.routers.geode-router.tls": "true",
+        "traefik.http.routers.geode-router.rule": "PathPrefix(`/geode`)",
+        "traefik.http.routers.geode-router.entrypoints": "websecure",
+        "traefik.http.middlewares.geode-strip.stripprefix.prefixes": "/geode",
+        "traefik.http.middlewares.geode-strip.stripprefix.forceSlash": "false",
+        "traefik.http.routers.geode-router.middlewares": "geode-strip",
+        "traefik.http.services.viewer.loadbalancer.server.port": "5000"
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/Dev_VisualizationTaskDefinition/geode",
+          "awslogs-region": "eu-west-3",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
     }
   ],
   "memory": "8192",
