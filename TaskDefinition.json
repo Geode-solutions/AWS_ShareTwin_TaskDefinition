@@ -50,9 +50,11 @@
         "traefik.http.routers.viewer-router.tls": "true",
         "traefik.http.routers.viewer-router.rule": "PathPrefix(`/viewer`)",
         "traefik.http.routers.viewer-router.entrypoints": "websecure",
+        "traefik.http.routers.viewer-router.service": "viewer",
         "traefik.http.middlewares.viewer-strip.stripprefix.prefixes": "/viewer",
         "traefik.http.middlewares.viewer-strip.stripprefix.forceSlash": "false",
-        "traefik.http.routers.viewer-router.middlewares": "viewer-strip"
+        "traefik.http.routers.viewer-router.middlewares": "viewer-strip",
+        "traefik.http.services.viewer.loadbalancer.server.port": "1234"
       },
       "logConfiguration": {
         "logDriver": "awslogs",
