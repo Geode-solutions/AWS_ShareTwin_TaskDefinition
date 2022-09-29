@@ -44,13 +44,6 @@
           "sourceVolume": "data"
         }
       ],
-      "portMappings": [
-        {
-          "hostPort": 1234,
-          "protocol": "tcp",
-          "containerPort": 1234
-        }
-      ],
       "image": "ghcr.io/geode-solutions/visualization_backend:develop",
       "name": "VisualizationContainer",
       "dockerLabels": {
