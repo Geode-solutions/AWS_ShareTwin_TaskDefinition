@@ -24,8 +24,7 @@
         "--providers.ecs.autoDiscoverClusters=false",
         "--providers.ecs.clusters=Dev_VisualizationCluster",
         "--entrypoints.websecure.address=:443",
-        "--serversTransport.insecureSkipVerify=true",
-        "--http.serversTransports.mytransport.disableHTTP2=true"
+        "--serversTransport.insecureSkipVerify=true"
       ],
       "logConfiguration": {
         "logDriver": "awslogs",
