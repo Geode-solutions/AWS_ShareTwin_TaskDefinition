@@ -47,7 +47,6 @@
       "name": "VisualizationContainer",
       "dockerLabels": {
         "traefik.enable": "true",
-        "traefik.port": "1234",
         "traefik.http.routers.viewer-router.tls": "true",
         "traefik.http.routers.viewer-router.rule": "PathPrefix(`/viewer`)",
         "traefik.http.routers.viewer-router.entrypoints": "websecure",
@@ -87,7 +86,6 @@
       "name": "GeodeBackEnd",
       "dockerLabels": {
         "traefik.enable": "true",
-        "traefik.port": "5000",
         "traefik.http.routers.geode-router.tls": "true",
         "traefik.http.routers.geode-router.rule": "PathPrefix(`/geode`)",
         "traefik.http.routers.geode-router.entrypoints": "websecure",
