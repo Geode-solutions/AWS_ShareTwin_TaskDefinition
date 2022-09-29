@@ -54,8 +54,7 @@
         "traefik.http.routers.viewer-router.service": "viewer",
         "traefik.http.middlewares.viewer-strip.stripprefix.prefixes": "/viewer",
         "traefik.http.middlewares.viewer-strip.stripprefix.forceSlash": "false",
-        "traefik.http.routers.viewer-router.middlewares": "viewer-strip",
-        "traefik.http.services.viewer.loadbalancer.server.port": "1234"
+        "traefik.http.routers.viewer-router.middlewares": "viewer-strip"
       },
       "logConfiguration": {
         "logDriver": "awslogs",
@@ -94,8 +93,7 @@
         "traefik.http.routers.geode-router.entrypoints": "websecure",
         "traefik.http.middlewares.geode-strip.stripprefix.prefixes": "/geode",
         "traefik.http.middlewares.geode-strip.stripprefix.forceSlash": "false",
-        "traefik.http.routers.geode-router.middlewares": "geode-strip",
-        "traefik.http.services.viewer.loadbalancer.server.port": "5000"
+        "traefik.http.routers.geode-router.middlewares": "geode-strip"
       },
       "logConfiguration": {
         "logDriver": "awslogs",
