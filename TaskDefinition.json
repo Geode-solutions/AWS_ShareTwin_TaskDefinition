@@ -37,52 +37,52 @@
       }
     },
     {
-      "environment": [
-        {
-          "name": "FLASK_ENV",
-          "value": "development"
-        },
-        {
-          "name": "ID",
-          "value": "123456"
-        }
-      ],
+      "name": "VisualizationContainer",
+      "image": "ghcr.io/geode-solutions/visualization_backend:develop",
+      "cpu": 0,
       "portMappings": [
         {
-          "hostPort": 5000,
+          "hostPort": 1234,
           "protocol": "tcp",
-          "containerPort": 5000
+          "containerPort": 1234
         }
       ],
+      "essential": true,
+      "environment": [],
       "mountPoints": [
         {
-          "containerPath": "/data",
-          "sourceVolume": "data"
+          "sourceVolume": "data",
+          "containerPath": "/data"
         }
       ],
-      "image": "ghcr.io/geode-solutions/visualization_geodebackend:develop",
-      "name": "GeodeBackEnd1",
+      "volumesFrom": [],
       "dockerLabels": {
         "traefik.enable": "true",
-        "traefik.port": "5000",
-        "traefik.http.routers.geode1-router.tls": "true",
-        "traefik.http.routers.geode1-router.rule": "PathPrefix(`/geode1`)",
-        "traefik.http.routers.geode1-router.entrypoints": "websecure",
-        "traefik.http.middlewares.geode1-strip.stripprefix.prefixes": "/geode1",
-        "traefik.http.middlewares.geode1-strip.stripprefix.forceSlash": "false",
-        "traefik.http.routers.geode1-router.middlewares": "geode1-strip"
+        "traefik.http.middlewares.viewer-strip.stripprefix.forceSlash": "false",
+        "traefik.http.middlewares.viewer-strip.stripprefix.prefixes": "/viewer",
+        "traefik.http.routers.viewer-router.entrypoints": "websecure",
+        "traefik.http.routers.viewer-router.middlewares": "viewer-strip",
+        "traefik.http.routers.viewer-router.rule": "PathPrefix(`/viewer`)",
+        "traefik.http.routers.viewer-router.service": "viewer",
+        "traefik.http.routers.viewer-router.tls": "true",
+        "traefik.port": "1234"
       },
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
           "awslogs-create-group": "true",
-          "awslogs-group": "/ecs/Dev_VisualizationTaskDefinition/geode",
+          "awslogs-group": "/ecs/Dev_VisualizationTaskDefinition/viewer",
           "awslogs-region": "eu-west-3",
           "awslogs-stream-prefix": "ecs"
         }
       }
     },
     {
+      "name": "GeodeBackEnd",
+      "image": "ghcr.io/geode-solutions/visualization_geodebackend:develop",
+      "cpu": 0,
+      "portMappings": [],
+      "essential": true,
       "environment": [
         {
           "name": "FLASK_ENV",
@@ -93,30 +93,22 @@
           "value": "123456"
         }
       ],
-      "portMappings": [
-        {
-          "hostPort": 5001,
-          "protocol": "tcp",
-          "containerPort": 5001
-        }
-      ],
       "mountPoints": [
         {
-          "containerPath": "/data",
-          "sourceVolume": "data"
+          "sourceVolume": "data",
+          "containerPath": "/data"
         }
       ],
-      "image": "ghcr.io/geode-solutions/visualization_geodebackend2:master",
-      "name": "GeodeBackEnd2",
+      "volumesFrom": [],
       "dockerLabels": {
         "traefik.enable": "true",
-        "traefik.port": "5001",
-        "traefik.http.routers.geode2-router.tls": "true",
-        "traefik.http.routers.geode2-router.rule": "PathPrefix(`/geode2`)",
-        "traefik.http.routers.geode2-router.entrypoints": "websecure",
-        "traefik.http.middlewares.geode2-strip.stripprefix.prefixes": "/geode2",
-        "traefik.http.middlewares.geode2-strip.stripprefix.forceSlash": "false",
-        "traefik.http.routers.geode2-router.middlewares": "geode2-strip"
+        "traefik.http.middlewares.geode-strip.stripprefix.forceSlash": "false",
+        "traefik.http.middlewares.geode-strip.stripprefix.prefixes": "/geode",
+        "traefik.http.routers.geode-router.entrypoints": "websecure",
+        "traefik.http.routers.geode-router.middlewares": "geode-strip",
+        "traefik.http.routers.geode-router.rule": "PathPrefix(`/geode`)",
+        "traefik.http.routers.geode-router.tls": "true",
+        "traefik.port": "5000"
       },
       "logConfiguration": {
         "logDriver": "awslogs",
