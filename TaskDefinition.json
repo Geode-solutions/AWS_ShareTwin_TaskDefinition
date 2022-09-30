@@ -47,6 +47,13 @@
           "value": "123456"
         }
       ],
+      "portMappings": [
+        {
+          "hostPort": 5000,
+          "protocol": "tcp",
+          "containerPort": 5000
+        }
+      ],
       "mountPoints": [
         {
           "containerPath": "/data",
@@ -84,6 +91,13 @@
         {
           "name": "ID",
           "value": "123456"
+        }
+      ],
+      "portMappings": [
+        {
+          "hostPort": 5001,
+          "protocol": "tcp",
+          "containerPort": 5001
         }
       ],
       "mountPoints": [
