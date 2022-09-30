@@ -63,7 +63,6 @@
         "traefik.http.routers.viewer-router.entrypoints": "websecure",
         "traefik.http.routers.viewer-router.middlewares": "viewer-strip",
         "traefik.http.routers.viewer-router.rule": "PathPrefix(`/viewer`)",
-        "traefik.http.routers.viewer-router.service": "viewer",
         "traefik.http.routers.viewer-router.tls": "true",
         "traefik.port": "1234"
       },
