@@ -57,6 +57,7 @@
       "name": "GeodeBackEnd1",
       "dockerLabels": {
         "traefik.enable": "true",
+        "traefik.port": "5000",
         "traefik.http.routers.geode1-router.tls": "true",
         "traefik.http.routers.geode1-router.rule": "PathPrefix(`/geode1`)",
         "traefik.http.routers.geode1-router.entrypoints": "websecure",
@@ -95,6 +96,7 @@
       "name": "GeodeBackEnd2",
       "dockerLabels": {
         "traefik.enable": "true",
+        "traefik.port": "5001",
         "traefik.http.routers.geode2-router.tls": "true",
         "traefik.http.routers.geode2-router.rule": "PathPrefix(`/geode2`)",
         "traefik.http.routers.geode2-router.entrypoints": "websecure",
