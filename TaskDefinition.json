@@ -81,7 +81,13 @@
       "name": "GeodeBackEnd",
       "image": "ghcr.io/geode-solutions/visualization_geodebackend:develop",
       "cpu": 0,
-      "portMappings": [],
+      "portMappings": [
+        {
+          "hostPort": 5000,
+          "protocol": "tcp",
+          "containerPort": 5000
+        }
+      ],
       "essential": true,
       "environment": [
         {
