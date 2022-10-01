@@ -91,7 +91,7 @@
       "environment": [
         {
           "name": "FLASK_ENV",
-          "value": "development"
+          "value": "production"
         },
         {
           "name": "ID",
