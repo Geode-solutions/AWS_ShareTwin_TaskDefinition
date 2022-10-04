@@ -25,6 +25,7 @@
         "--api.insecure=true",
         "--log.level=DEBUG",
         "--providers.ecs=true",
+        "--providers.ecs.refreshSeconds=100",
         "--providers.ecs.exposedbydefault=false",
         "--providers.ecs.autoDiscoverClusters=false",
         "--providers.ecs.clusters=Dev_VisualizationCluster",
@@ -83,7 +84,7 @@
       "environment": [
         {
           "name": "FLASK_ENV",
-          "value": "production"
+          "value": "dev"
         },
         {
           "name": "ID",
