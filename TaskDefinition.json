@@ -24,6 +24,7 @@
         "--providers.ecs.autoDiscoverClusters=false",
         "--providers.ecs.clusters=Dev_VisualizationCluster",
         "--entrypoints.websecure.address=:443",
+        "--entrypoints.websecure.http.tls=true",
         "--serversTransport.insecureSkipVerify=true"
       ],
       "logConfiguration": {
@@ -56,7 +57,6 @@
         "traefik.http.routers.viewer.entrypoints": "websecure",
         "traefik.http.routers.viewer.middlewares": "viewer-strip",
         "traefik.http.routers.viewer.rule": "PathPrefix(`/viewer`)",
-        "traefik.http.routers.viewer.tls": "true",
         "traefik.http.services.viewer.loadbalancer.server.port": "1234"
       },
       "logConfiguration": {
@@ -98,7 +98,6 @@
         "traefik.http.routers.geode.entrypoints": "websecure",
         "traefik.http.routers.geode.middlewares": "geode-strip",
         "traefik.http.routers.geode.rule": "PathPrefix(`/geode`)",
-        "traefik.http.routers.geode.tls": "true",
         "traefik.http.services.geode.loadbalancer.server.port": "5000"
       },
       "logConfiguration": {
