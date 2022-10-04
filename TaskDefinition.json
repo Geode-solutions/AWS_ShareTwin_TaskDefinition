@@ -3,36 +3,21 @@
     {
       "portMappings": [
         {
-          "hostPort": 80,
-          "protocol": "tcp",
-          "containerPort": 80
-        },
-        {
           "hostPort": 443,
           "protocol": "tcp",
           "containerPort": 443
-        },
-        {
-          "hostPort": 8080,
-          "protocol": "tcp",
-          "containerPort": 8080
         }
       ],
       "image": "traefik",
       "name": "Traefik",
       "command": [
-        "--api.dashboard=true",
-        "--api.insecure=true",
-        "--log.level=DEBUG",
         "--providers.ecs=true",
         "--providers.ecs.refreshSeconds=100",
         "--providers.ecs.exposedbydefault=false",
         "--providers.ecs.autoDiscoverClusters=false",
         "--providers.ecs.clusters=Dev_VisualizationCluster",
-        "--entrypoints.web.address=:80",
         "--entrypoints.websecure.address=:443",
-        "--entrypoints.websecure.http.tls=true",
-        "--serversTransport.insecureSkipVerify=true"
+        "--entrypoints.websecure.http.tls=true"
       ],
       "logConfiguration": {
         "logDriver": "awslogs",
@@ -102,7 +87,7 @@
         "traefik.enable": "true",
         "traefik.http.middlewares.geode-strip.stripprefix.forceSlash": "false",
         "traefik.http.middlewares.geode-strip.stripprefix.prefixes": "/geode",
-        "traefik.http.routers.geode.entrypoints": "web,websecure",
+        "traefik.http.routers.geode.entrypoints": "websecure",
         "traefik.http.routers.geode.middlewares": "geode-strip",
         "traefik.http.routers.geode.rule": "PathPrefix(`/geode`)",
         "traefik.http.services.geode.loadbalancer.server.port": "5000"
