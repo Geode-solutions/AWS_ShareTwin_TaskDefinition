@@ -11,6 +11,7 @@
       "image": "traefik",
       "name": "Traefik",
       "command": [
+        "--log.level=DEBUG",
         "--providers.ecs=true",
         "--providers.ecs.refreshSeconds=100",
         "--providers.ecs.exposedbydefault=false",
