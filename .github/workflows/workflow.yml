@@ -1,0 +1,55 @@
+on: 
+  workflow_call:
+    inputs:
+      image:
+        type: string
+        required: true
+      logs:
+        type: string
+        required: true
+      task:
+        type: string
+        required: true
+      cluster:
+        type: string
+        required: true
+    secrets:
+      AWS_ACCESS_KEY_ID:
+        required: true
+      AWS_SECRET_ACCESS_KEY:
+        required: true
+      AWS_REGION:
+        required: true
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    - name: Compile JSON file
+      run: |
+        jq '.containerDefinitions[].image="${{inputs.traefik_image}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
+        jq '.containerDefinitions[].image="${{inputs.geode_image}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
+        jq '.containerDefinitions[].image="${{inputs.visualization_image}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
+        jq '.containerDefinitions[].logConfiguration.options."awslogs-group"="${{inputs.traefik_logs}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
+        jq '.containerDefinitions[].logConfiguration.options."awslogs-group"="${{inputs.viewer_logs}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
+        jq '.containerDefinitions[].logConfiguration.options."awslogs-group"="${{inputs.geode_logs}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
+        jq '.family="${{inputs.task}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
+        cat TaskDefinition.json
+
+    - name: Deploy to Amazon ECS service
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: TaskDefinition.json
+        cluster: "${{inputs.cluster}}"

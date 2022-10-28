@@ -8,53 +8,110 @@
           "containerPort": 443
         }
       ],
-      "mountPoints": [
-        {
-          "containerPath": "/data",
-          "sourceVolume": "data"
-        }
+      "image": "traefik",
+      "name": "Traefik",
+      "command": [
+        "--log.level=DEBUG",
+        "--providers.ecs=true",
+        "--providers.ecs.refreshSeconds=100",
+        "--providers.ecs.exposedbydefault=false",
+        "--providers.ecs.autoDiscoverClusters=false",
+        "--providers.ecs.clusters=Dev_VisualizationCluster",
+        "--entrypoints.websecure.address=:443",
+        "--entrypoints.websecure.http.tls=true"
       ],
-      "image": "ghcr.io/geode-solutions/visualization_backend:develop",
-      "name": "VisualizationContainer"
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/Dev_VisualizationTaskDefinition/traefik",
+          "awslogs-region": "eu-west-3",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
     },
     {
-      "portMappings": [
+      "name": "VisualizationContainer",
+      "image": "ghcr.io/geode-solutions/visualization_backend:develop",
+      "cpu": 0,
+      "essential": true,
+      "environment": [],
+      "mountPoints": [
         {
-          "hostPort": 5000,
-          "protocol": "tcp",
-          "containerPort": 5000
+          "sourceVolume": "data",
+          "containerPath": "/data"
         }
       ],
+      "volumesFrom": [],
+      "dockerLabels": {
+        "traefik.enable": "true",
+        "traefik.http.middlewares.viewer-strip.stripprefix.forceSlash": "false",
+        "traefik.http.middlewares.viewer-strip.stripprefix.prefixes": "/viewer",
+        "traefik.http.routers.viewer.entrypoints": "websecure",
+        "traefik.http.routers.viewer.middlewares": "viewer-strip",
+        "traefik.http.routers.viewer.rule": "PathPrefix(`/viewer`)",
+        "traefik.http.services.viewer.loadbalancer.server.port": "1234"
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/Dev_VisualizationTaskDefinition/viewer",
+          "awslogs-region": "eu-west-3",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    },
+    {
+      "name": "GeodeBackEnd",
+      "image": "ghcr.io/geode-solutions/visualization_geodebackend:develop",
       "cpu": 0,
+      "essential": true,
       "environment": [
         {
           "name": "FLASK_ENV",
           "value": "production"
-        },
-        {
-          "name": "ID",
-          "value": "123456"
         }
       ],
       "mountPoints": [
         {
-          "containerPath": "/data",
-          "sourceVolume": "data"
+          "sourceVolume": "data",
+          "containerPath": "/data"
         }
       ],
-      "image": "ghcr.io/geode-solutions/visualization_geodebackend:develop",
-      "name": "GeodeBackEnd"
+      "volumesFrom": [],
+      "dockerLabels": {
+        "traefik.enable": "true",
+        "traefik.http.middlewares.geode-strip.stripprefix.forceSlash": "false",
+        "traefik.http.middlewares.geode-strip.stripprefix.prefixes": "/geode",
+        "traefik.http.routers.geode.entrypoints": "websecure",
+        "traefik.http.routers.geode.middlewares": "geode-strip",
+        "traefik.http.routers.geode.rule": "PathPrefix(`/geode`)",
+        "traefik.http.services.geode.loadbalancer.server.port": "5000"
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/Dev_VisualizationTaskDefinition/geode",
+          "awslogs-region": "eu-west-3",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
     }
   ],
   "memory": "8192",
-  "family": "VisualizationTaskDefinition",
+  "family": "Dev_VisualizationTaskDefinition",
+  "taskRoleArn": "arn:aws:iam::622060531233:role/ecsTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::622060531233:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
   "cpu": "4096",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
   "volumes": [
     {
-      "name": "data",
-      "host": {
-        "sourcePath": "/data"
-      }
+      "name": "data"
     }
   ]
 }
