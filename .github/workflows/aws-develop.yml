@@ -18,3 +18,4 @@ jobs:
       task: 'TD_ShareTwin_Dev'
       cluster: 'C_ShareTwin_Dev'
     secrets: inherit
+
