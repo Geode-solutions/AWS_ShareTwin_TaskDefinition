@@ -16,7 +16,7 @@
         "--providers.ecs.refreshSeconds=100",
         "--providers.ecs.exposedbydefault=false",
         "--providers.ecs.autoDiscoverClusters=false",
-        "--providers.ecs.clusters=Dev_VisualizationCluster",
+        "--providers.ecs.clusters=C_ShareTwin_Dev",
         "--entrypoints.websecure.address=:443",
         "--entrypoints.websecure.http.tls=true"
       ],
