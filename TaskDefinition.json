@@ -49,7 +49,7 @@
         "traefik.http.middlewares.viewer-strip.stripprefixregex.regex": "/[a-z0-9]{32}/viewer",
         "traefik.http.routers.viewer.entrypoints": "websecure",
         "traefik.http.routers.viewer.middlewares": "viewer-strip",
-        "traefik.http.routers.viewer.rule": "PathPrefix(`/viewer`)",
+        "traefik.http.routers.viewer.rule": "PathPrefix(`/{id:[a-z0-9]{32}}/viewer`)",
         "traefik.http.services.viewer.loadbalancer.server.port": "1234"
       },
       "logConfiguration": {
@@ -86,7 +86,7 @@
         "traefik.http.middlewares.geode-strip.stripprefixregex.regex": "/[a-z0-9]{32}/geode",
         "traefik.http.routers.geode.entrypoints": "websecure",
         "traefik.http.routers.geode.middlewares": "geode-strip",
-        "traefik.http.routers.geode.rule": "PathPrefix(`/geode`)",
+        "traefik.http.routers.geode.rule": "PathPrefix(`/{id:[a-z0-9]{32}}/geode`)",
         "traefik.http.services.geode.loadbalancer.server.port": "5000"
       },
       "logConfiguration": {
