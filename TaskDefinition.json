@@ -45,7 +45,6 @@
       "volumesFrom": [],
       "dockerLabels": {
         "traefik.enable": "true",
-        "traefik.http.middlewares.viewer-strip.stripprefix.forceSlash": "false",
         "traefik.http.middlewares.viewer-strip.stripprefixregex.regex": "/[a-z0-9]{32}/viewer",
         "traefik.http.routers.viewer.entrypoints": "websecure",
         "traefik.http.routers.viewer.middlewares": "viewer-strip",
@@ -82,7 +81,6 @@
       "volumesFrom": [],
       "dockerLabels": {
         "traefik.enable": "true",
-        "traefik.http.middlewares.geode-strip.stripprefix.forceSlash": "false",
         "traefik.http.middlewares.geode-strip.stripprefixregex.regex": "/[a-z0-9]{32}/geode",
         "traefik.http.routers.geode.entrypoints": "websecure",
         "traefik.http.routers.geode.middlewares": "geode-strip",
