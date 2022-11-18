@@ -65,7 +65,8 @@ jobs:
         jq '.containerDefinitions[0].logConfiguration.options."awslogs-group"="${{inputs.traefik_logs}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
         jq '.containerDefinitions[1].logConfiguration.options."awslogs-group"="${{inputs.viewer_logs}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
         jq '.containerDefinitions[2].logConfiguration.options."awslogs-group"="${{inputs.geode_logs}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
-        jq '.family="${{inputs.task}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
+        jq '.containerDefinitions[2].logConfiguration.options."awslogs-group"="${{inputs.geode_logs}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
+        jq '.containerDefinitions[0].command[5]=""--providers.ecs.clusters=${{inputs.cluster}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
         jq '.memory="${{inputs.memory}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
         jq '.cpu="${{inputs.cpu}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
         cat TaskDefinition.json
