@@ -1,0 +1,23 @@
+name: Deploy Dev to Amazon ECS
+
+on:
+  push:
+    branches: develop
+
+jobs:
+  deploy:
+    name: Deploy
+    uses: ./.github/workflows/workflow.yml
+    with:
+      cluster: 'C_ShareTwin_Dev'
+      task: 'TD_ShareTwin_Dev'
+      traefik_image: 'traefik'
+      traefik_logs: '/ecs/TD_ShareTwin_Dev/traefik/'
+      viewer_image: 'ghcr.io/geode-solutions/visualization_backend:develop'
+      viewer_logs: '/ecs/TD_ShareTwin_Dev/viewer/'
+      geode_image: 'ghcr.io/geode-solutions/visualization_geodebackend:develop'
+      geode_logs: '/ecs/TD_ShareTwin_Dev/geode/'
+      memory: '4096'
+      cpu: '2048'
+    secrets: inherit
+

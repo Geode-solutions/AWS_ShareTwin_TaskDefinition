@@ -1,0 +1,22 @@
+name: Deploy Master to Amazon ECS
+
+on:
+  push:
+    branches: master
+
+jobs:
+  deploy:
+    name: Deploy
+    uses: ./.github/workflows/workflow.yml
+    with:
+      cluster: 'C_ShareTwin_Prod'
+      task: 'TD_ShareTwin_Prod'
+      traefik_image: 'traefik'
+      traefik_logs: '/ecs/TD_ShareTwin_Prod/traefik/'
+      viewer_image: 'ghcr.io/geode-solutions/visualization_backend:master'
+      viewer_logs: '/ecs/TD_ShareTwin_Prod/viewer/'
+      geode_image: 'ghcr.io/geode-solutions/visualization_geodebackend:master'
+      geode_logs: '/ecs/TD_ShareTwin_Prod/geode/'
+      memory: '4096'
+      cpu: '2048'
+    secrets: inherit
