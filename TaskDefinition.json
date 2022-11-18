@@ -8,7 +8,7 @@
           "containerPort": 443
         }
       ],
-      "image": "traefik",
+      "image": "",
       "name": "Traefik",
       "command": [
         "--log.level=DEBUG",
@@ -24,7 +24,7 @@
         "logDriver": "awslogs",
         "options": {
           "awslogs-create-group": "true",
-          "awslogs-group": "/ecs/Dev_VisualizationTaskDefinition/traefik",
+          "awslogs-group": "",
           "awslogs-region": "eu-west-3",
           "awslogs-stream-prefix": "ecs"
         }
@@ -32,7 +32,7 @@
     },
     {
       "name": "ViewerContainer",
-      "image": "ghcr.io/geode-solutions/visualization_backend:develop",
+      "image": "",
       "cpu": 0,
       "essential": true,
       "environment": [],
@@ -55,7 +55,7 @@
         "logDriver": "awslogs",
         "options": {
           "awslogs-create-group": "true",
-          "awslogs-group": "/ecs/Dev_VisualizationTaskDefinition/viewer",
+          "awslogs-group": "",
           "awslogs-region": "eu-west-3",
           "awslogs-stream-prefix": "ecs"
         }
@@ -63,7 +63,7 @@
     },
     {
       "name": "GeodeBackEnd",
-      "image": "ghcr.io/geode-solutions/visualization_geodebackend:develop",
+      "image": "",
       "cpu": 0,
       "essential": true,
       "environment": [
@@ -91,19 +91,19 @@
         "logDriver": "awslogs",
         "options": {
           "awslogs-create-group": "true",
-          "awslogs-group": "/ecs/Dev_VisualizationTaskDefinition/geode",
+          "awslogs-group": "",
           "awslogs-region": "eu-west-3",
           "awslogs-stream-prefix": "ecs"
         }
       }
     }
   ],
-  "memory": "2048",
-  "family": "Dev_VisualizationTaskDefinition",
+  "memory": "",
+  "family": "",
   "taskRoleArn": "arn:aws:iam::622060531233:role/ecsTaskExecutionRole",
   "executionRoleArn": "arn:aws:iam::622060531233:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
-  "cpu": "1024",
+  "cpu": "",
   "requiresCompatibilities": [
     "FARGATE"
   ],

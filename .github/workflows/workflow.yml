@@ -52,12 +52,14 @@ jobs:
     - name: Compile JSON file
       run: |
         jq '.containerDefinitions[0].image="${{inputs.traefik_image}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
-        jq '.containerDefinitions[2].image="${{inputs.geode_image}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
         jq '.containerDefinitions[1].image="${{inputs.viewer_image}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
+        jq '.containerDefinitions[2].image="${{inputs.geode_image}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
         jq '.containerDefinitions[0].logConfiguration.options."awslogs-group"="${{inputs.traefik_logs}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
         jq '.containerDefinitions[1].logConfiguration.options."awslogs-group"="${{inputs.viewer_logs}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
         jq '.containerDefinitions[2].logConfiguration.options."awslogs-group"="${{inputs.geode_logs}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
         jq '.family="${{inputs.task}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
+        jq '.memory="${{inputs.memory}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
+        jq '.cpu="${{inputs.cpu}}"' TaskDefinition.json > temp && mv temp TaskDefinition.json
         cat TaskDefinition.json
 
     - name: Deploy to Amazon ECS service
