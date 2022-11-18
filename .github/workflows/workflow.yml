@@ -1,30 +1,38 @@
 on: 
   workflow_call:
     inputs:
-      traefik_image:
-        type: string
-        required: true
-      geode_image:
-        type: string
-        required: true
-      viewer_image:
-        type: string
-        required: true
-      traefik_logs:
-        type: string
-        required: true
-      viewer_logs:
-        type: string
-        required: true
-      geode_logs:
+      cluster:
         type: string
         required: true
       task:
         type: string
         required: true
-      cluster:
+      traefik_image:
         type: string
         required: true
+      traefik_logs:
+        type: string
+        required: true
+      viewer_image:
+        type: string
+        required: true
+      viewer_logs:
+        type: string
+        required: true
+      geode_image:
+        type: string
+        required: true
+      geode_logs:
+        type: string
+        required: true
+      memory:
+        type: string
+        required: true
+      cpu:
+        type: string
+        required: true
+      
+      
     secrets:
       AWS_ACCESS_KEY_ID:
         required: true
