@@ -31,7 +31,7 @@
       }
     },
     {
-      "name": "ViewerContainer",
+      "name": "Viewer",
       "image": "",
       "cpu": 0,
       "essential": true,
@@ -62,7 +62,7 @@
       }
     },
     {
-      "name": "GeodeBackEnd",
+      "name": "Geode",
       "image": "",
       "cpu": 0,
       "essential": true,
