@@ -17,7 +17,7 @@ jobs:
       viewer_logs: '/ecs/TD_ShareTwin_Dev/viewer/'
       geode_image: 'ghcr.io/geode-solutions/sharetwin_geode:develop'
       geode_logs: '/ecs/TD_ShareTwin_Dev/geode/'
-      memory: '2048'
-      cpu: '1024'
+      memory: '4096'
+      cpu: '2048'
     secrets: inherit
 
