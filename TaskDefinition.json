@@ -46,7 +46,6 @@
       "dockerLabels": {
         "traefik.enable": "true",
         "traefik.http.middlewares.viewer-strip.stripprefixregex.regex": "/[a-z0-9]{32}/viewer",
-        "traefik.http.middlewares.viewer-strip.stripprefixregex.forceslash": "true",
         "traefik.http.routers.viewer.entrypoints": "websecure",
         "traefik.http.routers.viewer.middlewares": "viewer-strip",
         "traefik.http.routers.viewer.rule": "PathPrefix(`/{id:[a-z0-9]{32}}/viewer`)",
@@ -83,7 +82,6 @@
       "dockerLabels": {
         "traefik.enable": "true",
         "traefik.http.middlewares.geode-strip.stripprefixregex.regex": "/[a-z0-9]{32}/geode",
-        "traefik.http.middlewares.geode-strip.stripprefixregex.forceslash": "true",
         "traefik.http.routers.geode.entrypoints": "websecure",
         "traefik.http.routers.geode.middlewares": "geode-strip",
         "traefik.http.routers.geode.rule": "PathPrefix(`/{id:[a-z0-9]{32}}/geode`)",
