@@ -9,7 +9,7 @@ jobs:
     name: Deploy
     uses: ./.github/workflows/workflow.yml
     with:
-      cluster: 'C_ShareTwin_Dev'
+      cluster: 'dummy'
       task: 'TD_ShareTwin_Dev'
       traefik_image: 'traefik'
       traefik_logs: '/ecs/TD_ShareTwin_Dev/traefik/'
