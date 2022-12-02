@@ -18,7 +18,8 @@
         "--providers.ecs.autoDiscoverClusters=false",
         "--providers.ecs.clusters=",
         "--entrypoints.websecure.address=:443",
-        "--entrypoints.websecure.http.tls=true"
+        "--entrypoints.websecure.http.tls=true",
+        "--api.dashboard=true"
       ],
       "logConfiguration": {
         "logDriver": "awslogs",
