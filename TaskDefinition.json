@@ -21,10 +21,7 @@
           "awslogs-region": "eu-west-3",
           "awslogs-stream-prefix": "ecs"
         }
-      },
-      "links": [
-        "Geode", "Viewer"
-      ]
+      }
     },
     {
       "name": "Viewer",
