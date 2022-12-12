@@ -5,12 +5,11 @@
       "image": "",
       "memory": "256",
       "cpu": "256",
-      "essential": true,
       "portMappings": [
         {
-          "hostPort": 443,
+          "hostPort": 80,
           "protocol": "tcp",
-          "containerPort": 443
+          "containerPort": 80
         }
       ],
       "logConfiguration": {
@@ -27,7 +26,6 @@
       "name": "viewer",
       "image": "",
       "cpu": 0,
-      "essential": true,
       "mountPoints": [
         {
           "sourceVolume": "data",
@@ -48,7 +46,6 @@
       "name": "geode",
       "image": "",
       "cpu": 0,
-      "essential": true,
       "environment": [
         {
           "name": "FLASK_ENV",
