@@ -9,10 +9,10 @@ jobs:
     name: Deploy
     uses: ./.github/workflows/workflow.yml
     with:
-      cluster: 'dummy'
+      cluster: 'C_ShareTwin_Dev'
       task: 'TD_ShareTwin_Dev'
-      traefik_image: 'traefik'
-      traefik_logs: '/ecs/TD_ShareTwin_Dev/traefik/'
+      router_image: 'ghcr.io/geode-solutions/sharetwin_router:develop'
+      router_logs: '/ecs/TD_ShareTwin_Dev/router/'
       viewer_image: 'ghcr.io/geode-solutions/sharetwin_viewer:develop'
       viewer_logs: '/ecs/TD_ShareTwin_Dev/viewer/'
       geode_image: 'ghcr.io/geode-solutions/sharetwin_geode:develop'

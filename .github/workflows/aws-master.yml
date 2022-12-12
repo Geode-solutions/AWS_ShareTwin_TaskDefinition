@@ -11,8 +11,8 @@ jobs:
     with:
       cluster: 'C_ShareTwin_Prod'
       task: 'TD_ShareTwin_Prod'
-      traefik_image: 'traefik'
-      traefik_logs: '/ecs/TD_ShareTwin_Prod/traefik/'
+      router_image: 'ghcr.io/geode-solutions/sharetwin_router:master'
+      router_logs: '/ecs/TD_ShareTwin_Prod/router/'
       viewer_image: 'ghcr.io/geode-solutions/sharetwin_viewer:master'
       viewer_logs: '/ecs/TD_ShareTwin_Prod/viewer/'
       geode_image: 'ghcr.io/geode-solutions/sharetwin_geode:master'
