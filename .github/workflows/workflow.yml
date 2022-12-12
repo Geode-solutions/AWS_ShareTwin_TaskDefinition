@@ -7,10 +7,10 @@ on:
       task:
         type: string
         required: true
-      traefik_image:
+      router_image:
         type: string
         required: true
-      traefik_logs:
+      router_logs:
         type: string
         required: true
       viewer_image:
