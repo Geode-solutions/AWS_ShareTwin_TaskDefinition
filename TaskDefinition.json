@@ -7,9 +7,9 @@
       "cpu": "256",
       "portMappings": [
         {
-          "hostPort": 80,
+          "hostPort": 443,
           "protocol": "tcp",
-          "containerPort": 80
+          "containerPort": 443
         }
       ],
       "logConfiguration": {
