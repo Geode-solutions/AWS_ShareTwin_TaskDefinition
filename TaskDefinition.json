@@ -48,8 +48,8 @@
       "cpu": 0,
       "environment": [
         {
-          "name": "FLASK_ENV",
-          "value": "production"
+          "name": "FLASK_DEBUG",
+          "value": "False"
         }
       ],
       "mountPoints": [
