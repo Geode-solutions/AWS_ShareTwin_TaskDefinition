@@ -1,6 +1,10 @@
 {
   "containerDefinitions": [
     {
+      "name": "router",
+      "image": "",
+      "memory": "256",
+      "cpu": "256",
       "portMappings": [
         {
           "hostPort": 443,
@@ -8,18 +12,6 @@
           "containerPort": 443
         }
       ],
-      "image": "",
-      "name": "Traefik",
-      "command": [
-        "--log.level=DEBUG",
-        "--providers.ecs=true",
-        "--providers.ecs.refreshSeconds=100",
-        "--providers.ecs.exposedbydefault=false",
-        "--providers.ecs.autoDiscoverClusters=false",
-        "--providers.ecs.clusters=",
-        "--entrypoints.websecure.address=:443",
-        "--entrypoints.websecure.http.tls=true"
-      ],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
@@ -31,26 +23,15 @@
       }
     },
     {
-      "name": "ViewerContainer",
+      "name": "viewer",
       "image": "",
       "cpu": 0,
-      "essential": true,
-      "environment": [],
       "mountPoints": [
         {
           "sourceVolume": "data",
           "containerPath": "/data"
         }
       ],
-      "volumesFrom": [],
-      "dockerLabels": {
-        "traefik.enable": "true",
-        "traefik.http.middlewares.viewer-strip.stripprefixregex.regex": "/[a-z0-9]{32}/viewer",
-        "traefik.http.routers.viewer.entrypoints": "websecure",
-        "traefik.http.routers.viewer.middlewares": "viewer-strip",
-        "traefik.http.routers.viewer.rule": "PathPrefix(`/{id:[a-z0-9]{32}}/viewer`)",
-        "traefik.http.services.viewer.loadbalancer.server.port": "1234"
-      },
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
@@ -62,14 +43,13 @@
       }
     },
     {
-      "name": "GeodeBackEnd",
+      "name": "geode",
       "image": "",
       "cpu": 0,
-      "essential": true,
       "environment": [
         {
-          "name": "FLASK_ENV",
-          "value": "production"
+          "name": "FLASK_DEBUG",
+          "value": "False"
         }
       ],
       "mountPoints": [
@@ -78,15 +58,6 @@
           "containerPath": "/data"
         }
       ],
-      "volumesFrom": [],
-      "dockerLabels": {
-        "traefik.enable": "true",
-        "traefik.http.middlewares.geode-strip.stripprefixregex.regex": "/[a-z0-9]{32}/geode",
-        "traefik.http.routers.geode.entrypoints": "websecure",
-        "traefik.http.routers.geode.middlewares": "geode-strip",
-        "traefik.http.routers.geode.rule": "PathPrefix(`/{id:[a-z0-9]{32}}/geode`)",
-        "traefik.http.services.geode.loadbalancer.server.port": "5000"
-      },
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
