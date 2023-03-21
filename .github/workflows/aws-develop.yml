@@ -11,7 +11,7 @@ jobs:
     with:
       cluster: 'C_ShareTwin_Dev'
       task: 'TD_ShareTwin_Dev'
-      router_image: '622060531233.dkr.ecr.eu-west-3.amazonaws.com/sharetwin_geode:develop'
+      router_image: '622060531233.dkr.ecr.eu-west-3.amazonaws.com/sharetwin_router:develop'
       router_logs: '/ecs/TD_ShareTwin_Dev/router/'
       viewer_image: '622060531233.dkr.ecr.eu-west-3.amazonaws.com/sharetwin_viewer:develop'
       viewer_logs: '/ecs/TD_ShareTwin_Dev/viewer/'
