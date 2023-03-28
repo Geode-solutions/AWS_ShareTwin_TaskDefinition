@@ -1,0 +1,25 @@
+services:
+  router:
+    container_name: "router"
+    image: "sharetwin_router:latest"
+    restart: always
+    ports:
+      - "80:80"
+  geode:
+    container_name: "geode"
+    image: sharetwin_geode:latest
+    restart: always
+    environment:
+      - FLASK_DEBUG=development
+      - ID=123456
+    volumes:
+      - data:/data
+  viewer:
+    container_name: "viewer"
+    image: sharetwin_viewer:latest
+    restart: always
+    volumes:
+      - data:/data
+volumes:
+  data:
+    external: true
