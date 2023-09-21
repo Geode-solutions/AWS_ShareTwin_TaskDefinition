@@ -1,6 +1,10 @@
 {
   "containerDefinitions": [
     {
+      "name": "router",
+      "image": "",
+      "memory": "256",
+      "cpu": "256",
       "portMappings": [
         {
           "hostPort": 443,
@@ -8,53 +12,75 @@
           "containerPort": 443
         }
       ],
-      "mountPoints": [
-        {
-          "containerPath": "/data",
-          "sourceVolume": "data"
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "",
+          "awslogs-region": "eu-west-3",
+          "awslogs-stream-prefix": "ecs"
         }
-      ],
-      "image": "ghcr.io/geode-solutions/visualization_backend:develop",
-      "name": "VisualizationContainer"
+      }
     },
     {
-      "portMappings": [
+      "name": "viewer",
+      "image": "",
+      "cpu": 0,
+      "mountPoints": [
         {
-          "hostPort": 5000,
-          "protocol": "tcp",
-          "containerPort": 5000
+          "sourceVolume": "data",
+          "containerPath": "/data"
         }
       ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "",
+          "awslogs-region": "eu-west-3",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    },
+    {
+      "name": "geode",
+      "image": "",
       "cpu": 0,
       "environment": [
         {
-          "name": "FLASK_ENV",
-          "value": "production"
-        },
-        {
-          "name": "ID",
-          "value": "123456"
+          "name": "FLASK_DEBUG",
+          "value": "False"
         }
       ],
       "mountPoints": [
         {
-          "containerPath": "/data",
-          "sourceVolume": "data"
+          "sourceVolume": "data",
+          "containerPath": "/data"
         }
       ],
-      "image": "ghcr.io/geode-solutions/visualization_geodebackend:develop",
-      "name": "GeodeBackEnd"
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "",
+          "awslogs-region": "eu-west-3",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
     }
   ],
-  "memory": "8192",
-  "family": "VisualizationTaskDefinition",
-  "cpu": "4096",
+  "memory": "",
+  "family": "",
+  "taskRoleArn": "arn:aws:iam::622060531233:role/ecsTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::622060531233:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "cpu": "",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
   "volumes": [
     {
-      "name": "data",
-      "host": {
-        "sourcePath": "/data"
-      }
+      "name": "data"
     }
   ]
 }
