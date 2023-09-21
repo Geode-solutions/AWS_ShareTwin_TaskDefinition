@@ -1,10 +1,6 @@
 {
   "containerDefinitions": [
     {
-      "name": "router",
-      "image": "",
-      "memory": "256",
-      "cpu": "256",
       "portMappings": [
         {
           "hostPort": 443,
@@ -12,75 +8,53 @@
           "containerPort": 443
         }
       ],
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-create-group": "true",
-          "awslogs-group": "",
-          "awslogs-region": "eu-west-3",
-          "awslogs-stream-prefix": "ecs"
-        }
-      }
-    },
-    {
-      "name": "viewer",
-      "image": "",
-      "cpu": 0,
       "mountPoints": [
         {
-          "sourceVolume": "data",
-          "containerPath": "/data"
+          "containerPath": "/data",
+          "sourceVolume": "data"
         }
       ],
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-create-group": "true",
-          "awslogs-group": "",
-          "awslogs-region": "eu-west-3",
-          "awslogs-stream-prefix": "ecs"
-        }
-      }
+      "image": "ghcr.io/geode-solutions/visualization_backend:develop",
+      "name": "VisualizationContainer"
     },
     {
-      "name": "geode",
-      "image": "",
+      "portMappings": [
+        {
+          "hostPort": 5000,
+          "protocol": "tcp",
+          "containerPort": 5000
+        }
+      ],
       "cpu": 0,
       "environment": [
         {
-          "name": "FLASK_DEBUG",
-          "value": "False"
+          "name": "FLASK_ENV",
+          "value": "production"
+        },
+        {
+          "name": "ID",
+          "value": "123456"
         }
       ],
       "mountPoints": [
         {
-          "sourceVolume": "data",
-          "containerPath": "/data"
+          "containerPath": "/data",
+          "sourceVolume": "data"
         }
       ],
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-create-group": "true",
-          "awslogs-group": "",
-          "awslogs-region": "eu-west-3",
-          "awslogs-stream-prefix": "ecs"
-        }
-      }
+      "image": "ghcr.io/geode-solutions/visualization_geodebackend:develop",
+      "name": "GeodeBackEnd"
     }
   ],
-  "memory": "",
-  "family": "",
-  "taskRoleArn": "arn:aws:iam::622060531233:role/ecsTaskExecutionRole",
-  "executionRoleArn": "arn:aws:iam::622060531233:role/ecsTaskExecutionRole",
-  "networkMode": "awsvpc",
-  "cpu": "",
-  "requiresCompatibilities": [
-    "FARGATE"
-  ],
+  "memory": "8192",
+  "family": "VisualizationTaskDefinition",
+  "cpu": "4096",
   "volumes": [
     {
-      "name": "data"
+      "name": "data",
+      "host": {
+        "sourcePath": "/data"
+      }
     }
   ]
 }
