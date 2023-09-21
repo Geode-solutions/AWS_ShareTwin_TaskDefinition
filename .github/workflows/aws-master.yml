@@ -9,14 +9,14 @@ jobs:
     name: Deploy
     uses: ./.github/workflows/workflow.yml
     with:
-      cluster: 'C_ShareTwin_Master'
-      task: 'TD_ShareTwin_Master'
+      cluster: 'ShareTwin-Master'
+      task: 'ShareTwin-Master'
       router_image: 'ghcr.io/geode-solutions/opengeodeweb-router:master'
-      router_logs: '/ecs/TD_ShareTwin_Master/router/'
+      router_logs: '/ecs/ShareTwin-Master/router/'
       viewer_image: 'ghcr.io/geode-solutions/sharetwin-viewer:master'
-      viewer_logs: '/ecs/TD_ShareTwin_Master/viewer/'
+      viewer_logs: '/ecs/ShareTwin-Master/viewer/'
       geode_image: 'ghcr.io/geode-solutions/sharetwin-geode:master'
-      geode_logs: '/ecs/TD_ShareTwin_Master/geode/'
+      geode_logs: '/ecs/ShareTwin-Master/geode/'
       memory: '4096'
       cpu: '2048'
     secrets: inherit
