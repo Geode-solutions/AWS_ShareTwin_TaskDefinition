@@ -1,0 +1,23 @@
+name: Deploy Next to Amazon ECS
+
+on:
+  push:
+    branches: next
+
+jobs:
+  deploy:
+    name: Deploy
+    uses: ./.github/workflows/workflow.yml
+    with:
+      cluster: 'ShareTwin-Next'
+      task: 'ShareTwin-Next'
+      router_image: 'ghcr.io/geode-solutions/opengeodeweb-router:next'
+      router_logs: '/ecs/ShareTwin-Next/router/'
+      viewer_image: 'ghcr.io/geode-solutions/opengeodeweb-viewer:next'
+      viewer_logs: '/ecs/ShareTwin-Next/viewer/'
+      geode_image: 'ghcr.io/geode-solutions/sharetwin-geode:next'
+      geode_logs: '/ecs/ShareTwin-Next/geode/'
+      memory: '4096'
+      cpu: '2048'
+    secrets: inherit
+
