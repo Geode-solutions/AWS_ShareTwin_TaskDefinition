@@ -13,7 +13,7 @@ jobs:
       task: 'ShareTwin-Next'
       router_image: 'ghcr.io/geode-solutions/opengeodeweb-router:next'
       router_logs: '/ecs/ShareTwin-Next/router/'
-      viewer_image: 'ghcr.io/geode-solutions/sharetwin-viewer:next'
+      viewer_image: 'ghcr.io/geode-solutions/opengeodeweb-viewer:next'
       viewer_logs: '/ecs/ShareTwin-Next/viewer/'
       geode_image: 'ghcr.io/geode-solutions/sharetwin-geode:next'
       geode_logs: '/ecs/ShareTwin-Next/geode/'

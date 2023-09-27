@@ -13,7 +13,7 @@ jobs:
       task: 'ShareTwin-Master'
       router_image: 'ghcr.io/geode-solutions/opengeodeweb-router:master'
       router_logs: '/ecs/ShareTwin-Master/router/'
-      viewer_image: 'ghcr.io/geode-solutions/sharetwin-viewer:master'
+      viewer_image: 'ghcr.io/geode-solutions/opengeodeweb-viewer:master'
       viewer_logs: '/ecs/ShareTwin-Master/viewer/'
       geode_image: 'ghcr.io/geode-solutions/sharetwin-geode:master'
       geode_logs: '/ecs/ShareTwin-Master/geode/'
